@@ -1,53 +1,54 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: mmoser <mmoser@student.codam.nl>             +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/11/23 16:04:31 by mmoser        #+#    #+#                  #
-#    Updated: 2023/11/23 16:04:32 by mmoser        ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/01/03 11:15:36 by mmoser            #+#    #+#              #
+#    Updated: 2024/01/03 11:59:24 by mmoser           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= libftprintf.a
+NAME	:= libgetnextline.a
 
 LIBFT	:= ../libft/libft.a
 
 INCS	:= ../libft
 
-SRC 	:= ft_printf.c ft_flags.c ft_output.c ft_numconv.c
+SRCS	:= get_next_line.c get_next_line_utils.c
 
 OBJ_DIR	:= .obj
-OBJ		:= $(SRC:%.c=$(OBJ_DIR)/%.o)
+OBJS	:= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 CC		:= cc
-CFLAGS	:= -Wall -Wextra -Werror $(addprefix -I, $(INCS)) -g
+CFLAGS	:= -Wall -Werror -Wextra -g $(addprefix -I ,$(INCS))
 
 RM		:= rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
 	cp $(dir $(LIBFT)).obj/*.o $(OBJ_DIR)
-	ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c
 	mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C $(@D)
+	$(MAKE) -C $(@D)
 	@printf "$(CREATED)" $@
 
 clean:
-	make -C $(dir $(LIBFT)) clean
 	$(RM) $(OBJ_DIR)/*.o
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT)
+	$(RM) $(NAME)
 
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) all
 
 info-%:
 	$(MAKE) --dry-run --always-make $*
@@ -55,9 +56,7 @@ info-%:
 print-%:
 	$(info $($*))
 
-bonus: all
-
-.PHONY: all clean fclean
+.PHONY: clean fclean re
 
 # ----------------------------------- colors --------------------------------- #
 

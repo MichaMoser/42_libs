@@ -6,7 +6,7 @@
 /*   By: mmoser <mmoser@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/24 11:30:09 by mmoser        #+#    #+#                 */
-/*   Updated: 2023/11/14 09:29:21 by mmoser        ########   odam.nl         */
+/*   Updated: 2023/11/07 13:28:03 by mmoser        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ char	*get_next_line(int fd)
 {
 	char		*str_incl_first_lb;
 	char		*lbreak;
-	static char	*excess_read;
+	static char	*excess_read[FD_MAX + 1];
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 1024)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > FD_MAX)
 		return (NULL);
-	str_incl_first_lb = get_first_lbreak(fd, &excess_read);
+	str_incl_first_lb = get_first_lbreak(fd, &excess_read[fd]);
 	if (str_incl_first_lb == NULL)
 		return (NULL);
 	if (*str_incl_first_lb == '\0')
@@ -77,39 +77,11 @@ char	*get_next_line(int fd)
 	lbreak = ft_strchr(str_incl_first_lb, '\n');
 	if (lbreak && ft_strlen(lbreak + 1))
 	{
-		excess_read = split_off_excessread(&str_incl_first_lb, lbreak);
-		if (!excess_read)
+		excess_read[fd] = split_off_excessread(&str_incl_first_lb, lbreak);
+		if (!excess_read[fd])
 			return (NULL);
 	}
 	else
-		excess_read = 0;
+		excess_read[fd] = 0;
 	return (str_incl_first_lb);
 }
-
-// int main(void)
-// {
-// 	int fd = open("variable_nls.txt", O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		printf("opening file failed\n");
-// 		return (0);
-// 	}
-// 	char *s;
-//
-// 	s = get_next_line(fd);
-// 	printf("nl:%s", s);
-// 	free (s);
-// 	s = get_next_line(fd);
-// 	printf("nl:%s", s);
-// 	free (s);
-// 	s = get_next_line(fd);
-// 	printf("nl:%s", s);
-// 	free (s);
-// 	s = get_next_line(fd);
-// 	printf("nl:%s", s);
-// 	free (s);
-// 	s = get_next_line(fd);
-// 	printf("nl:%s", s);
-// 	free (s);
-// 	return (0);
-// }
