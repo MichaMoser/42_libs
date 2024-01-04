@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	cp $(dir $(LIBFT)).obj/*.o $(OBJ_DIR)
-	ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJ_DIR)/*.o
 
 $(OBJ_DIR)/%.o: %.c
 	mkdir -p $(@D)
