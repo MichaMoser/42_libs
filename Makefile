@@ -78,6 +78,6 @@ RESET	:= \033[0m
 # ----------------------------------- messages ------------------------------- #
 
 REMOVED_ARCHIVE	:= $(MAGENTA) $(BOLD) REMOVED .a FILE FROM %s $(RESET)\n
-REMOVED_OBJECTS	:= $(MAGENTA) $(BOLD) REMOVED .o FILE FROM %s $(RESET)\n
+REMOVED_OBJECTS	:= $(MAGENTA) $(BOLD) REMOVED .o FILES FROM %s $(RESET)\n
 CREATED			:= $(GREEN) $(BOLD) CREATED %s $(RESET)\n\n
 UPDATED			:= $(GREEN) $(BOLD) CREATED OR UPDATED %s $(RESET)\n\n
