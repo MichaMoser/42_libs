@@ -48,11 +48,12 @@ GNL_OBJS	:= $(GNL_SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(LIBFT_OBJS) $(PF_OBJS) $(GNL_OBJS)
+	@printf "\n"
 	ar rcs $@ $^
 	@printf "$(CREATED)" $(NAME) $(CUR_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	mkdir -p $(@D)
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
