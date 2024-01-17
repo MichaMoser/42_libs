@@ -1,7 +1,7 @@
 
-#include "ft_printf/ft_printf.h"
-#include "get_next_line/get_next_line.h"
-#include "libft/libft.h"
+#include "src/ft_printf/ft_printf.h"
+#include "src/get_next_line/get_next_line.h"
+#include "src/libft/libft.h"
 
 int	main(void)
 {
