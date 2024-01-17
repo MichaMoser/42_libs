@@ -24,13 +24,14 @@ OBJS	:= $(SRCS:%.c=$(OBJ_DIR)/%.o)
 CC		:= cc
 CFLAGS	:= -Wall -Werror -Wextra -g $(addprefix -I ,$(INCS))
 
-RM		:= rm -f
+RM		:= rm -rf
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	cp $(dir $(LIBFT)).obj/*.o $(OBJ_DIR)
 	ar rcs $(NAME) $(OBJS)
+	@printf "$(CREATED)" $@ $(CUR_DIR)
 
 $(OBJ_DIR)/%.o: %.c
 	mkdir -p $(@D)
@@ -38,13 +39,16 @@ $(OBJ_DIR)/%.o: %.c
 
 $(LIBFT):
 	$(MAKE) -C $(@D)
-	@printf "$(CREATED)" $@
 
 clean:
-	$(RM) $(OBJ_DIR)/*.o
+	make -C $(dir $(LIBFT)) clean
+	$(RM) $(OBJ_DIR)
+	@printf "$(REMOVED)" $(OBJ_DIR) $(CUR_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(LIBFT)
+	@printf "$(REMOVED)" $(NAME) $(CUR_DIR)
+	@printf "$(REMOVED)" $(LIBFT) $(CUR_DIR)
 
 re:
 	$(MAKE) fclean
@@ -73,6 +77,7 @@ RESET	:= \033[0m
 
 # ----------------------------------- messages ------------------------------- #
 
-REMOVED_ARCHIVE	:= $(MAGENTA) $(BOLD) REMOVED .a FILE FROM %s $(RESET)\n
-REMOVED_OBJECTS	:= $(MAGENTA) $(BOLD) REMOVED .o FILE FROM %s $(RESET)\n
-CREATED			:= $(GREEN) $(BOLD) CREATED %s $(RESET)\n\n
+CUR_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+REMOVED	:= $(MAGENTA) $(BOLD) REMOVED %s (%s) $(RESET)\n\n
+CREATED	:= $(GREEN) $(BOLD) CREATED %s (%s) $(RESET)\n\n
+UPDATED	:= $(GREEN) $(BOLD) CREATED OR UPDATED %s (%s) $(RESET)\n\n

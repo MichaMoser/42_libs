@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= 42lib.a
+NAME		:= lib42.a
 
 LIB_DIR		:= \
 			   libft \
@@ -22,7 +22,7 @@ LIBS		:= \
 			   ft_printf/libftprintf.a \
 			   get_next_line/libgetnextline.a
 
-RM			:= rm -f
+RM			:= rm -rf
 
 BUILD_DIR	:= .build
 
@@ -33,22 +33,22 @@ all: $(LIBS)
 
 %.a:
 	$(MAKE) -C $(@D)
+	mkdir -p $(BUILD_DIR)
 	cp $(@D)/.obj/*.o $(BUILD_DIR)
-	@printf "$(CREATED)" $@
 	ar -rcs $(NAME) $(BUILD_DIR)/*.o
-	@printf "$(UPDATED)" $(NAME)
+	@printf "$(UPDATED)" $(NAME) $(CUR_DIR)
 
 clean:
 	@for dir in $(dir $(LIBS)); \
-		do $(MAKE) -C $$dir clean && printf "$(REMOVED_OBJECTS)" $$dir; done
-	$(RM) $(BUILD_DIR)/*.o
-	@printf "$(REMOVED_OBJECTS)" $(BUILD_DIR);
+		do $(MAKE) -C $$dir clean; done
+	$(RM) $(BUILD_DIR)
+	@printf "$(REMOVED)" $(BUILD_DIR)  $(CUR_DIR)
 
 fclean: clean
 	@for dir in $(dir $(LIBS)); \
-		do $(MAKE) -C $$dir fclean && printf "$(REMOVED_ARCHIVE)" $$dir; done
+		do $(MAKE) -C $$dir fclean; done
 	$(RM) $(NAME)
-	@printf "$(REMOVED_ARCHIVE)" $(NAME);
+	@printf "$(REMOVED)" $(NAME)  $(CUR_DIR)
 
 re:
 	$(MAKE) fclean
@@ -77,7 +77,7 @@ RESET	:= \033[0m
 
 # ----------------------------------- messages ------------------------------- #
 
-REMOVED_ARCHIVE	:= $(MAGENTA) $(BOLD) REMOVED .a FILE FROM %s $(RESET)\n
-REMOVED_OBJECTS	:= $(MAGENTA) $(BOLD) REMOVED .o FILES FROM %s $(RESET)\n
-CREATED			:= $(GREEN) $(BOLD) CREATED %s $(RESET)\n\n
-UPDATED			:= $(GREEN) $(BOLD) CREATED OR UPDATED %s $(RESET)\n\n
+CUR_DIR := $(dir $(abspath $(firstword $(MAKEFILE_LIST))))
+REMOVED	:= $(MAGENTA) $(BOLD) REMOVED %s (%s) $(RESET)\n\n
+CREATED	:= $(GREEN) $(BOLD) CREATED %s (%s) $(RESET)\n\n
+UPDATED	:= $(GREEN) $(BOLD) CREATED OR UPDATED %s (%s) $(RESET)\n\n
