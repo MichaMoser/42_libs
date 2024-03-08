@@ -19,14 +19,21 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	l1;
 	size_t	l2;
 
-	l1 = ft_strlen(s1);
-	l2 = ft_strlen(s2);
+	if (s1)
+		l1 = ft_strlen(s1);
+	else
+	 	l1 = 0;
+	if (s2)
+		l2 = ft_strlen(s2);
+	else
+		l2 = 0;
 	strlen = l1 + l2;
 	result = malloc((strlen + 1) * sizeof(char));
 	if (result == NULL)
 		return (0);
 	ft_memcpy(result, s1, l1);
-	ft_memcpy(&result[l1], s2, l2 + 1);
+	ft_memcpy(&result[l1], s2, l2);
+	result[strlen] = '\0';
 	return (result);
 }
 
