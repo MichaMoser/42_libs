@@ -21,7 +21,6 @@
 # include <unistd.h>
 
 # define RESET -1
-# define BUFFER_SIZE 1024
 
 typedef struct argument
 {

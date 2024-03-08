@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define BUFFER_SIZE 1024
 
 int	ft_buffered_putchar(const char c, int amount)
 {
