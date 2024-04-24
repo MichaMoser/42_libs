@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1)
 		l1 = ft_strlen(s1);
 	else
-	 	l1 = 0;
+		l1 = 0;
 	if (s2)
 		l2 = ft_strlen(s2);
 	else
