@@ -69,4 +69,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+int		count_occurrences(const char *str, const char *set);
+int		ft_min(int num1, int num2);
+int		ft_max(int num1, int num2);
+void	*ft_realloc(void *ptr, size_t new_size, size_t old_size);
+
 #endif
