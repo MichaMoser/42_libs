@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdbool.h>
+
+# define WHITESPACES " \t\n\v\f\r"
 
 typedef struct s_list
 {
@@ -73,5 +76,6 @@ int		count_occurrences(const char *str, const char *set);
 int		ft_min(int num1, int num2);
 int		ft_max(int num1, int num2);
 void	*ft_realloc(void *ptr, size_t new_size, size_t old_size);
+bool	is_whitespace(char c);
 
 #endif
