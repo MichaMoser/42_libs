@@ -6,7 +6,7 @@
 /*   By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:59:35 by mmoser            #+#    #+#             */
-/*   Updated: 2024/04/24 17:02:16 by mmoser           ###   ########.fr       */
+/*   Updated: 2024/04/30 10:54:33 by mmoser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_whitespace(char c)
 {
-	if (ft_strchr(WHITESPACES, c) == 0)
+	if (ft_strchr(WHITESPACES, c) == NULL)
 	{
 		return (false);
 	}
