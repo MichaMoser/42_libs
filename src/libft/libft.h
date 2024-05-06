@@ -22,8 +22,13 @@
 
 typedef struct s_list
 {
-	void			*content;
 	struct s_list	*next;
+	union
+	{
+		int		as_int;
+		char	*as_str;
+		void	*as_ptr;
+	};
 }	t_list;
 
 int		ft_isalpha(int c);

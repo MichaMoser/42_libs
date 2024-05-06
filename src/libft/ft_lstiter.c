@@ -21,7 +21,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	temp = lst;
 	while (temp != NULL)
 	{
-		(*f)((temp->content));
+		(*f)((temp->as_ptr));
 		temp = temp->next;
 	}
 }
