@@ -76,6 +76,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void	ft_lstjoin(t_list **head1, t_list *head2);
 
 int		count_occurrences(const char *str, const char *set);
 int		ft_min(int num1, int num2);
