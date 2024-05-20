@@ -37,7 +37,6 @@ int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
 size_t	ft_strlen(const char *str);
-size_t	ft_wordlen(const char *str);
 void	*ft_memset(void *str, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
@@ -83,5 +82,7 @@ int		ft_min(int num1, int num2);
 int		ft_max(int num1, int num2);
 void	*ft_realloc(void *ptr, size_t new_size, size_t old_size);
 bool	is_whitespace(char c);
+void	free_2d_array(void **arr);
+size_t	ft_wordlen(const char *str);
 
 #endif
