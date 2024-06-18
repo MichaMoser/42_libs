@@ -22,12 +22,15 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	t_list	*current;
 	t_list	*next;
 
-	if (lst == NULL || del == NULL || *lst == NULL)
+	if (lst == NULL || *lst == NULL)
 		return ;
 	current = *lst;
 	while (current != NULL)
 	{
-		del(current->as_ptr);
+		if (del)
+		{
+			del(current->as_ptr);
+		}
 		next = current->next;
 		free(current);
 		current = next;
