@@ -6,7 +6,7 @@
 /*   By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:44:21 by mmoser            #+#    #+#             */
-/*   Updated: 2024/05/20 10:44:58 by mmoser           ###   ########.fr       */
+/*   Updated: 2024/06/20 14:23:47 by mmoser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_wordlen(const char *str)
 	if (!str)
 		return (0);
 	i = 0;
-	while (str[i] && !is_whitespace(str[i]))
+	while (str[i] && !ft_is_whitespace(str[i]))
 	{
 		i++;
 	}
