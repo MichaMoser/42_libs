@@ -6,13 +6,13 @@
 /*   By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 10:50:30 by mmoser            #+#    #+#             */
-/*   Updated: 2024/04/24 10:50:58 by mmoser           ###   ########.fr       */
+/*   Updated: 2024/06/20 14:18:42 by mmoser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	count_occurrences(const char *str, const char *set)
+int	ft_count_occurrences(const char *str, const char *set)
 {
 	size_t	i;
 	size_t	count;
