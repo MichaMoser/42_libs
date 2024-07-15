@@ -82,6 +82,7 @@ int		ft_min(int num1, int num2);
 int		ft_max(int num1, int num2);
 void	*ft_realloc(void *ptr, size_t new_size, size_t old_size);
 bool	ft_is_whitespace(char c);
+bool	ft_ends_on(char *str, char c);
 void	ft_free_2d_array(void **arr);
 size_t	ft_wordlen(const char *str);
 
