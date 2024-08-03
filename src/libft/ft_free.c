@@ -6,7 +6,7 @@
 /*   By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 12:12:37 by mmoser            #+#    #+#             */
-/*   Updated: 2024/06/20 14:18:44 by mmoser           ###   ########.fr       */
+/*   Updated: 2024/08/01 15:20:44 by mmoser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,10 @@ void	ft_free_2d_array(void **arr)
 		y++;
 	}
 	free(arr);
+}
+
+void	sfree(void **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
 }
