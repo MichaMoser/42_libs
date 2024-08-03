@@ -58,10 +58,14 @@ int		get_prec(const char **s);
 void	fill_members(const char **s, t_arg *fdetails);
 
 // printf.c
-int		ft_buffered_putchar(const char c, int amount);
 int		unvalid_fspec(const char *s, int prev_flen);
 int		ft_printf(const char *s, ...);
+int		ft_printf_fd(int fd, const char *s, ...);
 int		ft_putarg(const char *s, va_list *args, int prev_flen);
 void	arg_to_str(t_arg *fdetails, va_list *args);
+
+// write_buffer.c
+int		ft_buffered_putchar(const char c, int amount);
+void	set_fd(int fd);
 
 #endif

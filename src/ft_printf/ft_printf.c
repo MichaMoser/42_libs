@@ -11,35 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#define BUFFER_SIZE 1024
-
-int	ft_buffered_putchar(const char c, int amount)
-{
-	static char		buffer[BUFFER_SIZE];
-	static size_t	count;
-	static size_t	i;
-	size_t			temp;
-
-	if (amount == RESET)
-	{
-		count += write(1, buffer, i);
-		ft_bzero(buffer, i);
-		i = 0;
-		return (temp = count, count = 0, temp);
-	}
-	while (amount > 0)
-	{
-		if (i == BUFFER_SIZE - 1)
-		{
-			count += write(1, buffer, i);
-			ft_bzero(buffer, i);
-			i = 0;
-		}
-		buffer[i++] = c;
-		amount--;
-	}
-	return (count);
-}
 
 void	arg_to_str(t_arg *fdetails, va_list *args)
 {
@@ -114,6 +85,7 @@ int	ft_printf(const char *s, ...)
 	int		flen;
 
 	flen = 1;
+	set_fd(STDIN_FILENO);
 	va_start(args, s);
 	if (!s)
 		return (-1);
@@ -133,6 +105,34 @@ int	ft_printf(const char *s, ...)
 		}
 		s++;
 	}
-	va_end(args);
-	return (ft_buffered_putchar(0, RESET));
+	return (va_end(args), ft_buffered_putchar(0, RESET));
+}
+
+int	ft_printf_fd(int fd, const char *s, ...)
+{
+	va_list	args;
+	int		flen;
+
+	flen = 1;
+	set_fd(fd);
+	va_start(args, s);
+	if (!s)
+		return (-1);
+	while (*s)
+	{
+		if (*s != '%')
+			ft_buffered_putchar(*s, true);
+		else
+		{
+			flen = ft_display_arg(s, &args, flen);
+			if (flen < 0)
+			{
+				va_end(args);
+				return (ft_buffered_putchar(0, RESET), -1);
+			}
+			s += flen;
+		}
+		s++;
+	}
+	return (va_end(args), ft_buffered_putchar(0, RESET));
 }
