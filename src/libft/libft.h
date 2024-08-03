@@ -86,5 +86,6 @@ bool	ft_ends_on(char *str, char c);
 void	ft_free_2d_array(void **arr);
 void	sfree(void **ptr);
 size_t	ft_wordlen(const char *str);
+t_list	*ft_lstfind(t_list *head, bool (*is_x)(void *, char *), char *arg);
 
 #endif
