@@ -85,7 +85,7 @@ int	ft_printf(const char *s, ...)
 	int		flen;
 
 	flen = 1;
-	set_fd(STDIN_FILENO);
+	set_fd(STDOUT_FILENO);
 	va_start(args, s);
 	if (!s)
 		return (-1);
