@@ -53,7 +53,7 @@ char	*ft_ntoa_base(t_arg *fdetails, unsigned long n);
 // flags.c
 void	solve_flag_conflicts(t_arg *fdetails);
 void	parse_flags(const char **s, t_arg *fdetails);
-int		get_width(const char **s);
+int		pf_get_width(const char **s);
 int		get_prec(const char **s);
 void	fill_members(const char **s, t_arg *fdetails);
 

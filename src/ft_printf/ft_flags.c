@@ -61,7 +61,7 @@ void	parse_flags(const char **s, t_arg *fdetails)
 	}
 }
 
-int	get_width(const char **s)
+int	pf_get_width(const char **s)
 {
 	int	width;
 
@@ -89,7 +89,7 @@ void	fill_members(const char **s, t_arg *fdetails)
 	(*s)++;
 	parse_flags(s, fdetails);
 	if (**s > '0' && **s <= '9')
-		fdetails->width = get_width(s);
+		fdetails->width = pf_get_width(s);
 	if (**s == '.')
 	{
 		(*s)++;
