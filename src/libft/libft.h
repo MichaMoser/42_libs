@@ -88,5 +88,6 @@ void	sfree(void **ptr);
 size_t	ft_wordlen(const char *str);
 t_list	*ft_lstfind(t_list *head, bool (*is_x)(void *, char *), char *arg);
 void	put_err(char *msg);
+void	ft_switch_ptrs(void **ptr1, void **ptr2);
 
 #endif
