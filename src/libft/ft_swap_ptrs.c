@@ -6,13 +6,13 @@
 /*   By: mmoser <mmoser@student.codam.nl>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:23:08 by mmoser            #+#    #+#             */
-/*   Updated: 2024/11/21 11:23:38 by mmoser           ###   ########.fr       */
+/*   Updated: 2024/11/22 12:54:17 by mmoser           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_switch_ptrs(void **ptr1, void **ptr2)
+void	ft_swap_ptrs(void **ptr1, void **ptr2)
 {
 	void	*temp;
 
